@@ -9,7 +9,8 @@ docker run --name multiscale_snapshots -v ~/Desktop/MultiscaleSnapshots:/Multisc
 docker exec -w /MultiscaleSnapshots -it $(docker ps | grep -E 'multiscale_snapshots' | awk '{print $1}' | awk 'NR==1') /bin/bash
 python3 -m pip install --upgrade cython
 python3 -m pip install -r requirements.txt
-python3 app.python
+python3 -m pip install --upgrade jinja2
+python3 app.py
 ```
 
 

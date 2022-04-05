@@ -23,9 +23,11 @@ app.register_blueprint(backend_api)
 
 comp = Compress(app)
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 if __name__ == "__main__":
     graph_file_path = 'data/reddit_graphs.pkl'
@@ -33,4 +35,5 @@ if __name__ == "__main__":
 
     load_data(graph_file_path, graph_embeddings_path)
 
-    app.run(port=8000, debug=True)
+    app.run(host='0.0.0.0', port=8000, debug=True)
+# https://superuser.com/questions/878849/docker-port-expose-fails-in-mac-os-x
