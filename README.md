@@ -1,5 +1,22 @@
 # Multiscale Snapshots
 
+```
+docker rmi multiscale_snapshots
+docker build -t multiscale_snapshots .
+docker stop  $(docker ps | grep -E 'multiscale_snapshots' | awk '{print $1}' | awk 'NR==1') && docker rm  $(docker ps -a | grep -E 'multiscale_snapshots' | awk '{print $1}' | awk 'NR==1')
+docker run --name multiscale_snapshots -v ~/Desktop/MultiscaleSnapshots:/MultiscaleSnapshots -p 8000:8000 -itd multiscale_snapshots /bin/bash 
+
+docker exec -w /MultiscaleSnapshots -it $(docker ps | grep -E 'multiscale_snapshots' | awk '{print $1}' | awk 'NR==1') /bin/bash
+pip install -r requirements.txt
+python3 app.python
+
+```
+
+cd MultiscaleSnapshots
+pip install -r requirements.txt
+python3 app.python
+
+
 Visual Analysis of Temporal Summaries in Dynamic Graphs - [[Paper]](https://arxiv.org/abs/2008.08282)
 
 <p align="center">
