@@ -6,3 +6,4 @@ RUN apt install python3.8 -y
 RUN apt-get clean 
 RUN apt-get update -y
 RUN apt-get -y install python3-pip 
+RUN apt-get -y install 

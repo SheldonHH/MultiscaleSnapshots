@@ -30,18 +30,36 @@ export function loadMetaData() {
     headers: {
       Accept: JSONAPI_MIMETYPE,
     },
-    success: function(data) {
+    success: function (data) {
       // initialize the toolbar
       initToolbar();
       // initialize the hierarchy
       initHierarchy(data);
     },
-    error: function(request) {
+    error: function (request) {
       alert('Hierarchy meta data could not be loaded!' + request.responseText);
     },
   });
 }
 
+
+function change(options) {
+  var parent = document.getElementsByClassName("md-form")[0];
+  if (document.getElementById("graph-metrics") != undefined) document.getElementById("graph-metrics").remove();
+  var selectList = document.createElement("select");
+  let selected = [...options].filter(o => o.selected).map(o => {
+
+    selectList.id = "graph-metrics";
+    selectList.multiple = "multiple";
+    parent.appendChild(selectList);
+    var option = document.createElement("option");
+    option.value = o.value;
+    option.text = o.text;
+    selectList.appendChild(option);
+
+  });
+
+}
 /**
  * Return the snapshot between
  * @param  {Number} level Level of snapshot
@@ -154,7 +172,7 @@ export function setFilteredNodes(ids) {
       Accept: JSONAPI_MIMETYPE,
     },
     data: JSON.stringify(ids),
-    success: function() {
+    success: function () {
       updateHierarchyData();
     },
   });

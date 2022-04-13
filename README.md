@@ -4,7 +4,7 @@
 docker rmi multiscale_snapshots
 docker build -t multiscale_snapshots .
 docker stop  $(docker ps | grep -E 'multiscale_snapshots' | awk '{print $1}' | awk 'NR==1') && docker rm  $(docker ps -a | grep -E 'multiscale_snapshots' | awk '{print $1}' | awk 'NR==1')
-docker run --name multiscale_snapshots -v ~/Desktop/MultiscaleSnapshots:/MultiscaleSnapshots -p 8000:8000 -itd multiscale_snapshots /bin/bash 
+docker run --name multiscale_snapshots -v ~/MultiscaleSnapshots:/MultiscaleSnapshots -p 8000:8000 -itd multiscale_snapshots /bin/bash 
 
 docker exec -w /MultiscaleSnapshots -it $(docker ps | grep -E 'multiscale_snapshots' | awk '{print $1}' | awk 'NR==1') /bin/bash
 python3 -m pip install --upgrade cython

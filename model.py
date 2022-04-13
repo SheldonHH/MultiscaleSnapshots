@@ -30,13 +30,13 @@ def load_data(graph_file_path, graph_embeddings_path):
         graph_file_path -- path to the graph file
         graph_embeddings_path -- path to the graph embeddings
     """
-    global hierarchy
-    with open(graph_file_path, 'rb') as f:
-        graphs = pickle.load(f)
-    with open(graph_embeddings_path, 'rb') as f:
-        embeddings = pickle.load(f)
+    # global hierarchy
+    # with open(graph_file_path, 'rb') as f:
+    #     graphs = pickle.load(f)
+    # with open(graph_embeddings_path, 'rb') as f:
+    #     embeddings = pickle.load(f)
 
-    hierarchy = Hierarchy(graphs, embeddings)
+    # hierarchy = Hierarchy(graphs, embeddings)
     print('Data loading done.')
 
 
@@ -114,6 +114,7 @@ class Hierarchy:
                                   self.filter_node_ids)
 
     def get_timeseries(self, start, end):
+        print('enter get_timeseries')
         """Return graphs between start and end
         """
         start = datetime.datetime.strptime(start, '%a, %d %b %Y %H:%M:%S GMT')
@@ -514,15 +515,24 @@ class Snapshot:
             G = H
         # compute metrics
         metrics = {}
+        str_metrics = {}
+        print( nx.number_of_nodes(G))
         metrics['number_of_nodes'] = nx.number_of_nodes(G)
+      
         if metrics['number_of_nodes']:
-            metrics['number_of_edges'] = nx.number_of_edges(G)
-            metrics['size'] = G.size()
-            metrics['density'] = nx.density(G)
-            metrics['average_clustering'] = nx.average_clustering(G)
-            metrics['transitivity'] = nx.transitivity(G)
-            G.graph['metrics'] = metrics
+            # metrics['number_of_edges'] = nx.number_of_edges(G)
+            # metrics['size'] = G.size()
+            # metrics['density'] = nx.density(G)
+            # metrics['average_clustering'] = nx.average_clustering(G)
+            # metrics['transitivity'] = nx.transitivity(G)
 
+            str_metrics['number_of_edges'] = 'number_of_edges'
+            str_metrics['size'] = 'size'
+            str_metrics['density'] = 'density'
+            str_metrics['average_clustering'] = 'average_clustering'
+            str_metrics['transitivity'] = 'transitivity'
+            G.graph['metrics'] = str_metrics
+            print
             # compute node attributes
             nx.set_node_attributes(G, nx.clustering(G), 'clustering')
             nx.set_node_attributes(G, nx.degree_centrality(G),

@@ -72,6 +72,7 @@ def get_intervall_tree():
 
 @backend_api.route("/timeseries")
 def get_timeseries():
+    print('enter api.py get_timeseries')
     """Return time series data over time for a interval
     """
     # get the start and end date

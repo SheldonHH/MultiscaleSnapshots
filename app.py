@@ -30,10 +30,10 @@ def index():
 
 
 if __name__ == "__main__":
-    graph_file_path = 'data/reddit_graphs.pkl'
-    graph_embeddings_path = 'data/reddit_embeddings.pkl'
+    graph_file_path = 'data/empty_graph_file.pkl'
+    graph_embeddings_path = 'data/empty_embedded_file.pkl'
 
-    load_data(graph_file_path, graph_embeddings_path)
+    # load_data(graph_file_path, graph_embeddings_path)
 
     app.run(host='0.0.0.0', port=8000, debug=True)
 # https://superuser.com/questions/878849/docker-port-expose-fails-in-mac-os-x
